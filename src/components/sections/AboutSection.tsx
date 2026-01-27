@@ -1,0 +1,111 @@
+"use client";
+
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { LogoArcIcon } from "@/components/ui";
+
+const stats = [
+    { value: "2023", label: "Est. Year" },
+    { value: "50+", label: "Volunteers" },
+    { value: "10K+", label: "Lives Touched" },
+];
+
+export const AboutSection: React.FC = () => {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+    return (
+        <section id="vision" className="py-24 md:py-40 px-6 md:px-12 lg:px-24 bg-white relative overflow-hidden">
+            {/* Background pattern */}
+            <div className="absolute inset-0 opacity-[0.02]">
+                <div className="absolute top-0 left-0 w-full h-full"
+                    style={{
+                        backgroundImage: `radial-gradient(circle at 1px 1px, #1E4BB5 1px, transparent 0)`,
+                        backgroundSize: '40px 40px'
+                    }}
+                />
+            </div>
+
+            <div ref={ref} className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-24 items-center relative z-10">
+                {/* Left - Visual */}
+                <motion.div
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    className="relative"
+                >
+                    <div className="relative aspect-square">
+                        {/* Main card */}
+                        <motion.div
+                            initial={{ clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)" }}
+                            animate={isInView ? { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" } : {}}
+                            transition={{ duration: 1, delay: 0.2, ease: [0.77, 0, 0.175, 1] }}
+                            className="absolute inset-0 bg-gradient-to-br from-[#F0F2F5] to-[#E5E7EB] rounded-[2rem] md:rounded-[3rem] flex items-center justify-center border border-gray-100 shadow-2xl shadow-gray-200/50"
+                        >
+                            <LogoArcIcon className="w-2/3 text-[#1E4BB5] opacity-30" />
+                        </motion.div>
+
+                        {/* Floating stats card */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={isInView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ delay: 0.6, duration: 0.6 }}
+                            className="absolute -bottom-8 -right-4 md:-right-8 p-6 md:p-8 bg-gradient-to-br from-[#0A0A0F] to-[#1A1A24] text-white rounded-2xl md:rounded-3xl shadow-2xl"
+                        >
+                            <div className="flex gap-6 md:gap-8">
+                                {stats.map((stat, i) => (
+                                    <div key={i} className="text-center">
+                                        <p className="text-2xl md:text-3xl font-black tracking-tighter text-gradient">{stat.value}</p>
+                                        <p className="text-[10px] font-mono uppercase opacity-50 tracking-wider mt-1">{stat.label}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </motion.div>
+
+                        {/* Decorative elements */}
+                        <div className="absolute -top-4 -left-4 w-24 h-24 border-2 border-[#1E4BB5]/20 rounded-full animate-float" />
+                        <div className="absolute top-1/2 -right-8 w-16 h-16 bg-gradient-to-br from-[#1E4BB5] to-[#06B6D4] rounded-2xl opacity-20 rotate-12" />
+                    </div>
+                </motion.div>
+
+                {/* Right - Content */}
+                <motion.div
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                >
+                    <span className="inline-block px-4 py-2 rounded-full bg-[#1E4BB5]/10 text-[#1E4BB5] text-xs font-bold uppercase tracking-widest mb-6">
+                        The Foundation
+                    </span>
+
+                    <h2 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter mb-8 leading-[0.9]">
+                        Empower to <span className="text-gradient">Lead.</span>
+                    </h2>
+
+                    <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-10">
+                        We believe lasting change begins at the <strong className="text-gray-900">grassroots</strong>—when
+                        people are empowered to lead their own development. Formally registered in 2023,
+                        APUN acts as the <span className="text-[#1E4BB5] font-semibold">bridge between institutional action and human empathy</span>.
+                    </p>
+
+                    <div className="grid sm:grid-cols-2 gap-8 pt-8 border-t border-gray-100">
+                        <div className="group">
+                            <div className="w-10 h-1 bg-gradient-to-r from-[#1E4BB5] to-[#06B6D4] rounded-full mb-4 group-hover:w-16 transition-all duration-300" />
+                            <h4 className="font-bold text-sm uppercase tracking-wide mb-2">Our Vision</h4>
+                            <p className="text-gray-500 text-sm leading-relaxed">
+                                Resilient communities where every individual lives with dignity and purpose.
+                            </p>
+                        </div>
+                        <div className="group">
+                            <div className="w-10 h-1 bg-gradient-to-r from-[#06B6D4] to-[#8B5CF6] rounded-full mb-4 group-hover:w-16 transition-all duration-300" />
+                            <h4 className="font-bold text-sm uppercase tracking-wide mb-2">Our Mission</h4>
+                            <p className="text-gray-500 text-sm leading-relaxed">
+                                To uplift communities through inclusive and sustainable development programs.
+                            </p>
+                        </div>
+                    </div>
+                </motion.div>
+            </div>
+        </section>
+    );
+};
