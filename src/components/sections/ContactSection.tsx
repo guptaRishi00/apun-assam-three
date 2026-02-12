@@ -4,11 +4,12 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Send, Mail, Phone, MapPin } from "lucide-react";
 import { LogoArcIcon } from "@/components/ui";
+import { LogoArcGrey } from "../ui/LogoArcGrey";
 
 const contactInfo = [
-    { label: "Location", value: "Dibrugarh, Assam 786004", icon: MapPin },
+    { label: "Location", value: "Ronga Bora Chuk, Komar Gaon, Rajabhetta, Dibrugarh, Assam 786004", icon: MapPin },
     { label: "Email", value: "apun.assam@gmail.com", icon: Mail },
-    { label: "Phone", value: "+91 7896889701", icon: Phone },
+    { label: "Phone", value: "+91 7896889701 / +91 8099476614", icon: Phone },
 ];
 
 export const ContactSection: React.FC = () => {
@@ -23,7 +24,7 @@ export const ContactSection: React.FC = () => {
     return (
         <section id="connect" className="relative py-24 md:py-40 px-6 md:px-12 lg:px-24 bg-gradient-to-br from-[#0A0A0F] via-[#0F0F18] to-[#1A1A24] text-white overflow-hidden">
             <div className="absolute inset-0 opacity-10">
-                <LogoArcIcon className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-auto rotate-12" />
+                <LogoArcGrey className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-auto rotate-12" />
             </div>
             <div className="absolute top-0 left-0 w-96 h-96 bg-[#1E4BB5]/20 rounded-full blur-[120px]" />
 

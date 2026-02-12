@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, Sparkles } from "lucide-react";
+import Image from "next/image";
 import { MagneticButton } from "@/components/ui";
 import type { NavbarProps } from "@/types";
 
@@ -20,8 +21,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onMenuOpen }) => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className={`fixed top-0 w-full z-50 px-6 md:px-12 py-6 flex justify-between items-center transition-all duration-500 ${isScrolled
-                    ? "bg-white/80 backdrop-blur-xl shadow-lg shadow-black/5"
-                    : ""
+                ? "bg-white/80 backdrop-blur-xl shadow-lg shadow-black/5"
+                : ""
                 }`}
         >
             <motion.a
@@ -29,10 +30,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onMenuOpen }) => {
                 whileHover={{ scale: 1.05 }}
                 className="relative group"
             >
-                <span className="text-2xl md:text-3xl font-black tracking-tighter">
-                    APUN
-                    <span className="text-gradient">.</span>
-                </span>
+                <Image
+                    src="/logo.svg"
+                    alt="APUN Logo"
+                    width={120}
+                    height={40}
+                    className="h-8 md:h-16 w-auto"
+                    priority
+                />
                 <motion.div
                     className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-[#1E4BB5] to-[#06B6D4]"
                     initial={{ width: 0 }}

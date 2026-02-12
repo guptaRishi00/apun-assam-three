@@ -10,7 +10,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "APUN | Association for People's Upliftment and Nurturing",
-  description: "Building resilient communities through grassroots empowerment in Dibrugarh, Assam. Join our mission for inclusive welfare and sustainable development.",
+  description: "APUN is a community-based non-profit organization dedicated to inclusive social development, humanitarian action, and grassroots empowerment in Dibrugarh, Assam. Registered under the Societies Registration Act, 1860.",
   keywords: ["APUN", "Assam", "NGO", "Community Development", "Dibrugarh", "Grassroots", "Empowerment"],
   authors: [{ name: "APUN Association" }],
   openGraph: {

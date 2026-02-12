@@ -6,7 +6,7 @@ import { LogoArcIcon, MagneticButton } from "@/components/ui";
 
 export const HeroSection: React.FC = () => {
     return (
-        <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-24 relative pt-24 pb-12 overflow-hidden">
+        <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-24 relative pt-24 pb-12 overflow-hidden mt-10">
             {/* Background decorations */}
             <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-[#1E4BB5]/10 via-[#06B6D4]/5 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
             <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-[#8B5CF6]/10 to-transparent rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />

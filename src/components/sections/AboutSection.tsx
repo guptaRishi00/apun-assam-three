@@ -83,9 +83,12 @@ export const AboutSection: React.FC = () => {
                     </h2>
 
                     <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-10">
-                        We believe lasting change begins at the <strong className="text-gray-900">grassroots</strong>—when
-                        people are empowered to lead their own development. Formally registered in 2023,
-                        APUN acts as the <span className="text-[#1E4BB5] font-semibold">bridge between institutional action and human empathy</span>.
+                        APUN is a community-based non-profit organization dedicated to inclusive social development,
+                        humanitarian action, and grassroots empowerment. Founded in 2023 and formally registered in
+                        January 2026 under the Societies Registration Act, 1860 (Government of Assam), APUN works
+                        closely with communities, youth, volunteers, and partner institutions. We believe lasting change
+                        begins at the <strong className="text-gray-900">grassroots</strong>—when people are
+                        <span className="text-[#1E4BB5] font-semibold"> empowered to lead their own development</span>.
                     </p>
 
                     <div className="grid sm:grid-cols-2 gap-8 pt-8 border-t border-gray-100">
@@ -93,14 +96,14 @@ export const AboutSection: React.FC = () => {
                             <div className="w-10 h-1 bg-gradient-to-r from-[#1E4BB5] to-[#06B6D4] rounded-full mb-4 group-hover:w-16 transition-all duration-300" />
                             <h4 className="font-bold text-sm uppercase tracking-wide mb-2">Our Vision</h4>
                             <p className="text-gray-500 text-sm leading-relaxed">
-                                Resilient communities where every individual lives with dignity and purpose.
+                                Empowered, resilient communities where every individual lives with dignity.
                             </p>
                         </div>
                         <div className="group">
                             <div className="w-10 h-1 bg-gradient-to-r from-[#06B6D4] to-[#8B5CF6] rounded-full mb-4 group-hover:w-16 transition-all duration-300" />
                             <h4 className="font-bold text-sm uppercase tracking-wide mb-2">Our Mission</h4>
                             <p className="text-gray-500 text-sm leading-relaxed">
-                                To uplift communities through inclusive and sustainable development programs.
+                                To uplift communities through inclusive and sustainable development.
                             </p>
                         </div>
                     </div>

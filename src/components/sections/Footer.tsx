@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 const links = {
     platform: ["Vision", "Impact", "Sectors", "Partners"],
@@ -18,13 +19,19 @@ export const Footer: React.FC = () => {
                         <motion.a
                             href="#"
                             whileHover={{ scale: 1.02 }}
-                            className="inline-block text-5xl md:text-6xl font-black tracking-tighter mb-6"
+                            className="inline-block mb-6"
                         >
-                            APUN<span className="text-gradient">.</span>
+                            <Image
+                                src="/logo.svg"
+                                alt="APUN Logo"
+                                width={180}
+                                height={60}
+                                className="h-12 md:h-14 w-auto"
+                            />
                         </motion.a>
                         <p className="text-gray-500 leading-relaxed">
-                            Association for People&apos;s Upliftment and Nurturing. Empowering resilient
-                            communities through compassionate action and sustainable growth.
+                            Association for People&apos;s Upliftment and Nurturing. Uplifting communities
+                            through inclusive, compassionate, and sustainable development.
                         </p>
                     </div>
 
