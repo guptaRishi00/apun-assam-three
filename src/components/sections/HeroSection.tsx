@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { ArrowDown, Play } from "lucide-react";
 import { LogoArcIcon, MagneticButton } from "@/components/ui";
 
@@ -65,6 +66,37 @@ export const HeroSection: React.FC = () => {
                     </h1>
                 </motion.div>
 
+                {/* Hero Image */}
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                    className="relative w-full h-[300px] md:h-[450px] lg:h-[550px] rounded-2xl md:rounded-3xl overflow-hidden mb-12 group"
+                >
+                    <Image
+                        src="/herosection.jpeg"
+                        alt="Community empowerment in Assam - APUN"
+                        fill
+                        priority
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
+                    />
+                    {/* Gradient overlays */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#1E4BB5]/20 to-transparent" />
+
+                    {/* Floating badge */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 1.2, duration: 0.6 }}
+                        className="absolute bottom-6 left-6 md:bottom-8 md:left-8 bg-white/90 backdrop-blur-md rounded-xl px-5 py-3 shadow-lg"
+                    >
+                        <p className="text-xs md:text-sm font-bold text-[#1E4BB5] uppercase tracking-wider">Empowering Communities</p>
+                        <p className="text-[10px] md:text-xs text-gray-500 mt-0.5">Across 27 Districts of Assam</p>
+                    </motion.div>
+                </motion.div>
+
                 {/* Bottom Content */}
                 <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-end">
                     <motion.div
@@ -75,7 +107,7 @@ export const HeroSection: React.FC = () => {
                     >
                         <p className="text-lg md:text-xl lg:text-2xl text-gray-600 max-w-lg leading-relaxed font-medium">
                             The Association for People's Upliftment and Nurturing is building
-                            a <span className="text-[#1E4BB5] font-bold">resilient ecosystem</span> of grassroots empowerment in Dibrugarh.
+                            a <span className="text-[#1E4BB5] font-bold">resilient ecosystem</span> of grassroots empowerment in Assam.
                         </p>
 
                         <div className="flex flex-wrap gap-4">

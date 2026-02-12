@@ -2,12 +2,12 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { LogoArcIcon } from "@/components/ui";
+import Image from "next/image";
 
 const stats = [
     { value: "2023", label: "Est. Year" },
     { value: "50+", label: "Volunteers" },
-    { value: "10K+", label: "Lives Touched" },
+    { value: "1K+", label: "Lives Touched" },
 ];
 
 export const AboutSection: React.FC = () => {
@@ -35,14 +35,20 @@ export const AboutSection: React.FC = () => {
                     className="relative"
                 >
                     <div className="relative aspect-square">
-                        {/* Main card */}
+                        {/* Main image card */}
                         <motion.div
                             initial={{ clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)" }}
                             animate={isInView ? { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" } : {}}
                             transition={{ duration: 1, delay: 0.2, ease: [0.77, 0, 0.175, 1] }}
-                            className="absolute inset-0 bg-gradient-to-br from-[#F0F2F5] to-[#E5E7EB] rounded-[2rem] md:rounded-[3rem] flex items-center justify-center border border-gray-100 shadow-2xl shadow-gray-200/50"
+                            className="absolute inset-0 rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl shadow-gray-200/50"
                         >
-                            <LogoArcIcon className="w-2/3 text-[#1E4BB5] opacity-30" />
+                            <Image
+                                src="/about.jpeg"
+                                alt="About APUN - Community empowerment"
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 1024px) 100vw, 50vw"
+                            />
                         </motion.div>
 
                         {/* Floating stats card */}
@@ -84,7 +90,7 @@ export const AboutSection: React.FC = () => {
 
                     <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-10">
                         APUN is a community-based non-profit organization dedicated to inclusive social development,
-                        humanitarian action, and grassroots empowerment. Founded in 2023 and formally registered in
+                        humanitarian action, and grassroots empowerment. Formed in 2023 and officially registered in
                         January 2026 under the Societies Registration Act, 1860 (Government of Assam), APUN works
                         closely with communities, youth, volunteers, and partner institutions. We believe lasting change
                         begins at the <strong className="text-gray-900">grassroots</strong>—when people are
