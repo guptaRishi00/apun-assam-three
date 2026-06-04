@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Loader2, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,8 +11,51 @@ const links = {
   socials: ["Instagram", "LinkedIn", "Facebook", "Twitter"],
 };
 
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbySjpkbrRaUKN7BTm4LqRJWBFdJbGIb6S7Aw81WriA54N-B3vuByXt3WM8wZLthjWg0/exec";
+
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+
+  // States for newsletter subscription
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
+
+  const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setStatus("submitting");
+
+    // We send placeholder values for name and message so it fits your existing Google Sheet format perfectly
+    const formToSubmit = new FormData();
+    formToSubmit.append("name", "Newsletter Subscriber");
+    formToSubmit.append("email", email);
+    formToSubmit.append("message", "Subscribed to newsletter.");
+
+    try {
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        body: formToSubmit,
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        setEmail("");
+        // Reset back to normal after 4 seconds
+        setTimeout(() => setStatus("idle"), 4000);
+      } else {
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 4000);
+      }
+    } catch (error) {
+      console.error("Subscription error:", error);
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 4000);
+    }
+  };
 
   return (
     <footer
@@ -104,23 +148,62 @@ export const Footer: React.FC = () => {
               <p className="text-sm text-gray-500 mb-4">
                 Stay updated with our initiatives.
               </p>
-              <form className="flex gap-2" onSubmit={(e) => e.preventDefault()}>
-                <label htmlFor="newsletter-email" className="sr-only">
-                  Email address
-                </label>
-                <input
-                  id="newsletter-email"
-                  type="email"
-                  placeholder="Email"
-                  required
-                  className="flex-1 px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-[#1E4BB5] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-1"
-                />
-                <button
-                  type="submit"
-                  className="px-4 py-3 bg-gradient-to-r from-[#1E4BB5] to-[#3B6FE8] text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:shadow-blue-500/20 transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-2"
-                >
-                  Join
-                </button>
+
+              <form
+                className="flex flex-col gap-2 relative"
+                onSubmit={handleSubscribe}
+              >
+                <div className="flex gap-2">
+                  <label htmlFor="newsletter-email" className="sr-only">
+                    Email address
+                  </label>
+                  <input
+                    id="newsletter-email"
+                    type="email"
+                    placeholder="Email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={status === "submitting" || status === "success"}
+                    className="flex-1 px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-[#1E4BB5] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-1 disabled:opacity-70 disabled:bg-gray-50"
+                  />
+                  <button
+                    type="submit"
+                    disabled={status === "submitting" || status === "success"}
+                    className="px-4 py-3 min-w-[80px] flex items-center justify-center bg-gradient-to-r from-[#1E4BB5] to-[#3B6FE8] text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:shadow-blue-500/20 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-2 disabled:opacity-80 disabled:cursor-not-allowed"
+                  >
+                    {status === "submitting" ? (
+                      <Loader2
+                        size={16}
+                        className="animate-spin"
+                        aria-hidden="true"
+                      />
+                    ) : status === "success" ? (
+                      <CheckCircle2 size={16} aria-hidden="true" />
+                    ) : (
+                      "Join"
+                    )}
+                  </button>
+                </div>
+                {/* Status Messages below the input */}
+                {status === "success" && (
+                  <motion.p
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-xs text-green-600 font-medium absolute -bottom-5 left-1"
+                  >
+                    Subscribed successfully!
+                  </motion.p>
+                )}
+                {status === "error" && (
+                  <motion.p
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-xs text-red-500 font-medium absolute -bottom-5 left-1"
+                  >
+                    Failed to subscribe. Try again.
+                  </motion.p>
+                )}
               </form>
             </div>
           </div>
