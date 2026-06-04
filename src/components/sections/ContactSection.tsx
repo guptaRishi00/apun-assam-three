@@ -211,7 +211,7 @@ export const ContactSection: React.FC = () => {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="Full Name"
+                  placeholder="Fullname"
                   className="w-full bg-white/5 border border-white/10 rounded-xl px-4 sm:px-5 py-3 sm:py-4 text-sm sm:text-base focus:border-[#1E4BB5] outline-none transition-all font-medium placeholder:text-white/20 focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-1 focus-visible:ring-offset-[#0F0F18]"
                 />
               </div>
