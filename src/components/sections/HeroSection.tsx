@@ -115,7 +115,7 @@ export const HeroSection: React.FC = () => {
               Empowering Communities
             </p>
             <p className="text-[10px] md:text-xs text-gray-500 mt-0.5">
-              Across 27 Districts of Assam
+              Across Assam and North East
             </p>
           </motion.div>
         </motion.div>
