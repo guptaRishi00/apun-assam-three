@@ -39,7 +39,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onMenuOpen }) => {
             alt="APUN Logo"
             width={120}
             height={40}
-            className="h-14 md:h-12 w-auto"
+            className="h-14 md:h-20 w-auto"
             priority
           />
           <div

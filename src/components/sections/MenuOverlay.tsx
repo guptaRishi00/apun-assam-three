@@ -7,7 +7,6 @@ import type { MenuOverlayProps } from "@/types";
 const MENU_ITEMS = [
   { label: "Vision", href: "#vision" },
   { label: "Initiatives", href: "#initiatives" },
-
   { label: "Connect", href: "#connect" },
 ] as const;
 
@@ -38,7 +37,7 @@ export const MenuOverlay: React.FC<MenuOverlayProps> = ({
           animate={{ clipPath: "circle(150% at calc(100% - 40px) 40px)" }}
           exit={{ clipPath: "circle(0% at calc(100% - 40px) 40px)" }}
           transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 bg-gradient-to-br from-[#0A0A0F] via-[#0F0F18] to-[#1A1A24] z-[100] flex flex-col overflow-y-auto"
+          className="fixed inset-0 bg-gradient-to-br from-[#0A0A0F] via-[#0F0F18] to-[#1A1A24] z-[100] flex flex-col overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
         >
           {/* Header */}
           <div className="flex justify-between items-center p-6 md:p-12">
