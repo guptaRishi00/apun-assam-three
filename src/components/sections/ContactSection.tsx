@@ -58,14 +58,17 @@ export const ContactSection: React.FC = () => {
     setIsSubmitting(true);
     setSubmitStatus("idle");
 
-    const formToSubmit = new FormData();
+    const formToSubmit = new URLSearchParams();
     formToSubmit.append("name", formData.name);
     formToSubmit.append("email", formData.email);
     formToSubmit.append("message", formData.message);
 
+    formToSubmit.append("sheetName", "Sheet1");
+
     try {
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
+
         body: formToSubmit,
       });
 

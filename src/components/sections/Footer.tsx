@@ -44,14 +44,17 @@ export const Footer: React.FC = () => {
     setStatus("submitting");
 
     // We send placeholder values for name and message so it fits your existing Google Sheet format perfectly
-    const formToSubmit = new FormData();
+    const formToSubmit = new URLSearchParams();
     formToSubmit.append("name", "Newsletter Subscriber");
     formToSubmit.append("email", email);
     formToSubmit.append("message", "Subscribed to newsletter.");
 
+    formToSubmit.append("sheetName", "Newsletter");
+
     try {
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
+
         body: formToSubmit,
       });
 
