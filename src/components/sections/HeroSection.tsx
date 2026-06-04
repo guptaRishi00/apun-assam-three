@@ -137,7 +137,7 @@ export const HeroSection: React.FC = () => {
 
             <div className="flex flex-col sm:flex-row flex-wrap gap-4">
               <Link
-                href="#connect"
+                href="#initiatives"
                 aria-label="Go to contact section"
                 className="w-full sm:w-auto"
               >
