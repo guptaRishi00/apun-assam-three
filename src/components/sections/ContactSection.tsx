@@ -253,7 +253,7 @@ export const ContactSection: React.FC = () => {
                 disabled={isSubmitting}
                 whileHover={!isSubmitting ? { scale: 1.02 } : {}}
                 whileTap={!isSubmitting ? { scale: 0.98 } : {}}
-                className="w-full py-4 sm:py-5 text-sm sm:text-base bg-gradient-to-r from-[#1E4BB5] to-[#3B6FE8] font-bold uppercase tracking-tight rounded-xl flex items-center justify-center gap-2 sm:gap-3 group hover:shadow-2xl hover:shadow-blue-500/30 disabled:opacity-70 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-2"
+                className="w-full py-4 sm:py-5 text-sm sm:text-base bg-gradient-to-r cursor-pointer from-[#1E4BB5] to-[#3B6FE8] font-bold uppercase tracking-tight rounded-xl flex items-center justify-center gap-2 sm:gap-3 group hover:shadow-2xl hover:shadow-blue-500/30 disabled:opacity-70 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-2"
               >
                 {isSubmitting ? (
                   <>

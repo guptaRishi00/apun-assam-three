@@ -185,7 +185,7 @@ export const Footer: React.FC = () => {
                     type="submit"
                     disabled={status === "submitting" || status === "success"}
                     // Added w-full on mobile, auto width on sm screens. Moved margin logic here.
-                    className="w-full sm:w-auto px-6 py-3 sm:mr-2 md:mr-4 min-w-[80px] flex items-center justify-center bg-gradient-to-r from-[#1E4BB5] to-[#3B6FE8] text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:shadow-blue-500/20 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-2 disabled:opacity-80 disabled:cursor-not-allowed"
+                    className="w-full sm:w-auto px-6 py-3 cursor-pointer sm:mr-2 md:mr-4 min-w-[80px] flex items-center justify-center bg-gradient-to-r from-[#1E4BB5] to-[#3B6FE8] text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:shadow-blue-500/20 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-2 disabled:opacity-80 disabled:cursor-not-allowed"
                   >
                     {status === "submitting" ? (
                       <Loader2

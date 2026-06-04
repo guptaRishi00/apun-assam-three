@@ -65,7 +65,7 @@ export const SectorsSection: React.FC = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.1 * i, duration: 0.6 }}
               whileHover={{ y: -8 }}
-              className="group relative bg-white p-8 md:p-10 rounded-[1.5rem] md:rounded-[2rem] flex flex-col justify-between min-h-[380px] md:min-h-[420px] overflow-hidden border border-gray-100 hover:border-[#1E4BB5]/30 transition-all duration-500 shadow-sm hover:shadow-xl cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-4 focus-visible:ring-offset-[#FAFBFC]"
+              className="group relative bg-white p-8 md:p-10 rounded-[1.5rem] md:rounded-[2rem] flex flex-col justify-between min-h-[380px] md:min-h-[420px] overflow-hidden border border-gray-100 hover:border-[#1E4BB5]/30 transition-all duration-500 shadow-sm hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-4 focus-visible:ring-offset-[#FAFBFC]"
               aria-label={`Explore ${sector.title} sector`}
             >
               {/* Top */}
@@ -151,7 +151,7 @@ export const SectorsSection: React.FC = () => {
               </p>
               <Link href="#connect" aria-label="Go to contact section">
                 <MagneticButton
-                  className="bg-white text-[#1E4BB5] text-xs hover:bg-gray-100"
+                  className="bg-white text-[#1E4BB5] text-xs hover:bg-gray-100 cursor-pointer"
                   variant="secondary"
                 >
                   Apply Now
