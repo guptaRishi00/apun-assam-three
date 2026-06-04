@@ -54,7 +54,6 @@ export const Footer: React.FC = () => {
     try {
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
-
         body: formToSubmit,
       });
 
@@ -175,6 +174,7 @@ export const Footer: React.FC = () => {
                   <label htmlFor="newsletter-email" className="sr-only">
                     Email address
                   </label>
+                  {/* CHANGED: text-sm to text-base to prevent zooming on iOS */}
                   <input
                     id="newsletter-email"
                     type="email"
@@ -183,7 +183,7 @@ export const Footer: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={status === "submitting" || status === "success"}
-                    className="flex-1 px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-[#1E4BB5] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-1 disabled:opacity-70 disabled:bg-gray-50"
+                    className="flex-1 px-4 py-3 rounded-xl border border-gray-200 text-base focus:border-[#1E4BB5] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-1 disabled:opacity-70 disabled:bg-gray-50"
                   />
                   <button
                     type="submit"

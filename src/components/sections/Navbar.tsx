@@ -51,7 +51,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onMenuOpen }) => {
 
       <div className="flex items-center gap-3 md:gap-4">
         <Link href="#connect" aria-label="Go to contact section">
-          <MagneticButton className="hidden md:flex text-xs px-6 py-3 font-medium">
+          <MagneticButton className="hidden md:flex text-xs px-6 py-3 font-medium cursor-pointer">
             Let's Connect
           </MagneticButton>
         </Link>

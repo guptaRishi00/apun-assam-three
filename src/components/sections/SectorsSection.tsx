@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Sparkles, ArrowUpRight } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { MagneticButton, LogoArcIcon } from "@/components/ui";
 import { SECTORS } from "@/data/sectors";
 import Link from "next/link";
@@ -91,11 +91,6 @@ export const SectorsSection: React.FC = () => {
                   <h3 className="text-2xl md:text-3xl font-bold tracking-tight group-hover:text-[#1E4BB5] transition-colors">
                     {sector.title}
                   </h3>
-                  <ArrowUpRight
-                    aria-hidden="true"
-                    size={20}
-                    className="opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all text-[#1E4BB5]"
-                  />
                 </div>
                 <p className="text-gray-500 text-sm md:text-base leading-relaxed">
                   {sector.desc}
