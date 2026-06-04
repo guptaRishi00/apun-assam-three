@@ -37,6 +37,13 @@ export const MenuOverlay: React.FC<MenuOverlayProps> = ({
           animate={{ clipPath: "circle(150% at calc(100% - 40px) 40px)" }}
           exit={{ clipPath: "circle(0% at calc(100% - 40px) 40px)" }}
           transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+          style={{
+            // Forces GPU hardware acceleration in Safari to prevent lag
+            WebkitTransform: "translateZ(0)",
+            transform: "translateZ(0)",
+            // Pre-calculates the animation pipeline
+            willChange: "clip-path",
+          }}
           className="fixed inset-0 bg-gradient-to-br from-[#0A0A0F] via-[#0F0F18] to-[#1A1A24] z-[100] flex flex-col overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
         >
           {/* Header */}

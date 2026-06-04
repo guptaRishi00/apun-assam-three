@@ -10,21 +10,18 @@ const contactInfo = [
     label: "Location",
     value: "Ronga Bora Chuk, Komar Gaon, Rajabhetta, Dibrugarh, Assam 786004",
     icon: MapPin,
-    // Opens in Google Maps (or the maps app on mobile)
     href: "https://maps.google.com/?q=Ronga+Bora+Chuk,+Komar+Gaon,+Rajabhetta,+Dibrugarh,+Assam+786004",
   },
   {
     label: "Email",
     value: "Info@apun.org.in",
     icon: Mail,
-    // Opens default email client
     href: "mailto:Info@apun.org.in",
   },
   {
     label: "Phone",
     value: "+91 7896889701 / +91 8099476614",
     icon: Phone,
-    // Dials the primary phone number
     href: "tel:+917896889701",
   },
 ];
@@ -62,20 +59,17 @@ export const ContactSection: React.FC = () => {
     formToSubmit.append("name", formData.name);
     formToSubmit.append("email", formData.email);
     formToSubmit.append("message", formData.message);
-
     formToSubmit.append("sheetName", "Sheet1");
 
     try {
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
-
         body: formToSubmit,
       });
 
       if (response.ok) {
         setSubmitStatus("success");
         setFormData({ name: "", email: "", message: "" });
-        // Timer removed so the thank you message stays on screen
       } else {
         setSubmitStatus("error");
       }
@@ -108,7 +102,6 @@ export const ContactSection: React.FC = () => {
         ref={ref}
         className="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 lg:gap-24"
       >
-        {/* Left Side: Contact Info */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -121,11 +114,11 @@ export const ContactSection: React.FC = () => {
             id="contact-heading"
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter mb-6 sm:mb-8 leading-[0.9]"
           >
-            Let&apos;s Build <span className="text-gradient">Together.</span>
+            Let's Build <span className="text-gradient">Together.</span>
           </h2>
           <p className="text-base sm:text-lg text-white/60 max-w-md mb-10 sm:mb-12">
-            Ready to make an impact? Let&apos;s discuss how we can create
-            meaningful change.
+            Ready to make an impact? Let's discuss how we can create meaningful
+            change.
           </p>
 
           <ul className="space-y-3 sm:space-y-4 m-0 p-0 list-none">
@@ -136,7 +129,6 @@ export const ContactSection: React.FC = () => {
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ delay: 0.2 + i * 0.1 }}
               >
-                {/* Wrapped the content in an anchor tag with the href */}
                 <a
                   href={item.href}
                   target={item.label === "Location" ? "_blank" : undefined}
@@ -169,7 +161,6 @@ export const ContactSection: React.FC = () => {
           </ul>
         </motion.div>
 
-        {/* Right Side: Form or Success State */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -207,6 +198,7 @@ export const ContactSection: React.FC = () => {
                 >
                   Your Name
                 </label>
+                {/* Changed text-sm sm:text-base to text-base to prevent iOS zoom */}
                 <input
                   id="contact-name"
                   type="text"
@@ -215,7 +207,7 @@ export const ContactSection: React.FC = () => {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Fullname"
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 sm:px-5 py-3 sm:py-4 text-sm sm:text-base focus:border-[#1E4BB5] outline-none transition-all font-medium placeholder:text-white/20 focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-1 focus-visible:ring-offset-[#0F0F18]"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 sm:px-5 py-3 sm:py-4 text-base focus:border-[#1E4BB5] outline-none transition-all font-medium placeholder:text-white/20 focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-1 focus-visible:ring-offset-[#0F0F18]"
                 />
               </div>
               <div>
@@ -225,6 +217,7 @@ export const ContactSection: React.FC = () => {
                 >
                   Email
                 </label>
+                {/* Changed text-sm sm:text-base to text-base to prevent iOS zoom */}
                 <input
                   id="contact-email"
                   type="email"
@@ -233,7 +226,7 @@ export const ContactSection: React.FC = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="email@example.com"
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 sm:px-5 py-3 sm:py-4 text-sm sm:text-base focus:border-[#1E4BB5] outline-none transition-all font-medium placeholder:text-white/20 focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-1 focus-visible:ring-offset-[#0F0F18]"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 sm:px-5 py-3 sm:py-4 text-base focus:border-[#1E4BB5] outline-none transition-all font-medium placeholder:text-white/20 focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-1 focus-visible:ring-offset-[#0F0F18]"
                 />
               </div>
               <div>
@@ -243,6 +236,7 @@ export const ContactSection: React.FC = () => {
                 >
                   Message
                 </label>
+                {/* Changed text-sm sm:text-base to text-base to prevent iOS zoom */}
                 <textarea
                   id="contact-message"
                   name="message"
@@ -251,7 +245,7 @@ export const ContactSection: React.FC = () => {
                   onChange={handleChange}
                   placeholder="How can we help?"
                   rows={4}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 sm:px-5 py-3 sm:py-4 text-sm sm:text-base focus:border-[#1E4BB5] outline-none transition-all font-medium placeholder:text-white/20 resize-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-1 focus-visible:ring-offset-[#0F0F18]"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 sm:px-5 py-3 sm:py-4 text-base focus:border-[#1E4BB5] outline-none transition-all font-medium placeholder:text-white/20 resize-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-1 focus-visible:ring-offset-[#0F0F18]"
                 />
               </div>
 
