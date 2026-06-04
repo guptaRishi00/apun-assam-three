@@ -8,7 +8,6 @@ import Link from "next/link";
 
 const links = {
   platform: ["Vision", "Initiatives", "Connect"],
-  // Updated to include names and explicit URLs. Removed Twitter.
   socials: [
     {
       name: "Instagram",
@@ -43,12 +42,10 @@ export const Footer: React.FC = () => {
 
     setStatus("submitting");
 
-    // We send placeholder values for name and message so it fits your existing Google Sheet format perfectly
     const formToSubmit = new URLSearchParams();
     formToSubmit.append("name", "Newsletter Subscriber");
     formToSubmit.append("email", email);
     formToSubmit.append("message", "Subscribed to newsletter.");
-
     formToSubmit.append("sheetName", "Newsletter");
 
     try {
@@ -60,7 +57,6 @@ export const Footer: React.FC = () => {
       if (response.ok) {
         setStatus("success");
         setEmail("");
-        // Reset back to normal after 4 seconds
         setTimeout(() => setStatus("idle"), 4000);
       } else {
         setStatus("error");
@@ -138,7 +134,6 @@ export const Footer: React.FC = () => {
                 Socials
               </h3>
               <ul className="space-y-3">
-                {/* Updated mapping to use the objects defined at the top */}
                 {links.socials.map((social) => (
                   <li key={social.name}>
                     <a
@@ -170,11 +165,11 @@ export const Footer: React.FC = () => {
                 className="flex flex-col gap-2 relative"
                 onSubmit={handleSubscribe}
               >
-                <div className="flex gap-2">
+                {/* Changed to flex-col on mobile, flex-row on sm screens and up */}
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                   <label htmlFor="newsletter-email" className="sr-only">
                     Email address
                   </label>
-                  {/* CHANGED: text-sm to text-base to prevent zooming on iOS */}
                   <input
                     id="newsletter-email"
                     type="email"
@@ -183,12 +178,14 @@ export const Footer: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={status === "submitting" || status === "success"}
-                    className="flex-1 px-4 py-3 rounded-xl border border-gray-200 text-base focus:border-[#1E4BB5] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-1 disabled:opacity-70 disabled:bg-gray-50"
+                    // Added w-full and sm:flex-1
+                    className="w-full sm:flex-1 px-4 py-3 rounded-xl border border-gray-200 text-base focus:border-[#1E4BB5] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-1 disabled:opacity-70 disabled:bg-gray-50"
                   />
                   <button
                     type="submit"
                     disabled={status === "submitting" || status === "success"}
-                    className="px-4 py-3 min-w-[80px] flex items-center justify-center bg-gradient-to-r from-[#1E4BB5] to-[#3B6FE8] text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:shadow-blue-500/20 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-2 disabled:opacity-80 disabled:cursor-not-allowed"
+                    // Added w-full on mobile, auto width on sm screens. Moved margin logic here.
+                    className="w-full sm:w-auto px-6 py-3 sm:mr-2 md:mr-4 min-w-[80px] flex items-center justify-center bg-gradient-to-r from-[#1E4BB5] to-[#3B6FE8] text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:shadow-blue-500/20 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-2 disabled:opacity-80 disabled:cursor-not-allowed"
                   >
                     {status === "submitting" ? (
                       <Loader2
@@ -203,7 +200,6 @@ export const Footer: React.FC = () => {
                     )}
                   </button>
                 </div>
-                {/* Status Messages below the input */}
                 {status === "success" && (
                   <motion.p
                     initial={{ opacity: 0, y: -5 }}
