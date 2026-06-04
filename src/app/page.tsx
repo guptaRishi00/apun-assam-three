@@ -32,7 +32,7 @@ const App: React.FC = () => {
       className="relative bg-[#F9FAFB] text-[#000000] font-sans selection:bg-[#1E4BB5] selection:text-white"
     >
       <GrainTexture />
-      <CustomCursor />
+      {/* <CustomCursor /> */}
 
       <Navbar onMenuOpen={() => setIsMenuOpen(true)} />
       <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />

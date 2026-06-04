@@ -1,20 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --primary-blue: #1E4BB5;
-  --primary-blue-light: #3B6FE8;
+  --primary-blue: #1e4bb5;
+  --primary-blue-light: #3b6fe8;
   --primary-blue-dark: #153580;
-  --accent-cyan: #06B6D4;
-  --accent-purple: #8B5CF6;
-  --dark: #0A0A0F;
-  --dark-secondary: #1A1A24;
-  --light: #FAFBFC;
-  --light-secondary: #F0F2F5;
+  --accent-cyan: #06b6d4;
+  --accent-purple: #8b5cf6;
+  --dark: #0a0a0f;
+  --dark-secondary: #1a1a24;
+  --light: #fafbfc;
+  --light-secondary: #f0f2f5;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-}
-
-* {
-  cursor: none;
 }
 
 @media (max-width: 1024px) {
@@ -35,7 +31,12 @@ body {
 
 /* Premium Text Gradient */
 .text-gradient {
-  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-cyan) 50%, var(--accent-purple) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--primary-blue) 0%,
+    var(--accent-cyan) 50%,
+    var(--accent-purple) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -72,7 +73,6 @@ body {
 
 /* Smooth Animations */
 @keyframes float {
-
   0%,
   100% {
     transform: translateY(0px);
