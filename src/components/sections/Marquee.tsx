@@ -25,23 +25,24 @@ export const Marquee: React.FC = () => {
         className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#1E4BB5]/50 to-transparent"
       />
 
-      {/* Edge Fades (CSS Masking for a premium smooth fade on the left/right edges) */}
-      <div
-        className="absolute inset-0 z-10 pointer-events-none"
-        style={{
-          maskImage:
-            "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
-          WebkitMaskImage:
-            "-webkit-linear-gradient(left, transparent, black 15%, black 85%, transparent)",
-        }}
-      />
+      {/* PERFORMANCE FIX: Replaced CPU-heavy CSS Masking with simple absolute gradients.
+        Because your background edges are #0A0A0F, these perfectly mimic the fade without lagging Safari.
+      */}
+      <div className="absolute top-0 left-0 bottom-0 w-16 md:w-32 z-10 bg-gradient-to-r from-[#0A0A0F] to-transparent pointer-events-none" />
+      <div className="absolute top-0 right-0 bottom-0 w-16 md:w-32 z-10 bg-gradient-to-l from-[#0A0A0F] to-transparent pointer-events-none" />
 
       {/* First row - Moving Left */}
       <div className="flex whitespace-nowrap overflow-hidden">
         <motion.div
           animate={{ x: ["0%", "-50%"] }}
           transition={{ repeat: Infinity, duration: 100, ease: "linear" }}
-          className="flex w-max will-change-transform"
+          style={{
+            // Forces Safari to use hardware acceleration (GPU) for this layer
+            WebkitTransform: "translateZ(0)",
+            transform: "translateZ(0)",
+            willChange: "transform",
+          }}
+          className="flex w-max"
         >
           {/* We render exactly two identical halves. Moving by -50% creates a perfect infinite loop. */}
           {[0, 1].map((setIndex) => (
@@ -71,7 +72,13 @@ export const Marquee: React.FC = () => {
         <motion.div
           animate={{ x: ["-50%", "0%"] }}
           transition={{ repeat: Infinity, duration: 100, ease: "linear" }}
-          className="flex w-max will-change-transform"
+          style={{
+            // Forces Safari to use hardware acceleration (GPU) for this layer
+            WebkitTransform: "translateZ(0)",
+            transform: "translateZ(0)",
+            willChange: "transform",
+          }}
+          className="flex w-max"
         >
           {[0, 1].map((setIndex) => (
             <div
