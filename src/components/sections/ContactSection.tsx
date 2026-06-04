@@ -59,8 +59,7 @@ export const ContactSection: React.FC = () => {
     formToSubmit.append("name", formData.name);
     formToSubmit.append("email", formData.email);
     formToSubmit.append("message", formData.message);
-    formToSubmit.append("sheetName", "Sheet1");
-
+    formToSubmit.append("sheetName", "Form");
     try {
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
