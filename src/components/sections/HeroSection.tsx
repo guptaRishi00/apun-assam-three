@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowDown, Play } from "lucide-react";
-import { LogoArcIcon, MagneticButton } from "@/components/ui";
+import { LogoArcIcon } from "@/components/ui";
 import Link from "next/link";
 
 export const HeroSection: React.FC = () => {
@@ -136,17 +136,22 @@ export const HeroSection: React.FC = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row flex-wrap gap-4">
-              <Link
-                href="#initiatives"
-                aria-label="Go to contact section"
+              {/* Replaced MagneticButton with a standard motion-wrapped Link */}
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 className="w-full sm:w-auto"
               >
-                <MagneticButton className="w-full sm:w-auto h-16 px-8 flex items-center justify-center text-sm font-semibold uppercase tracking-tight">
+                <Link
+                  href="#connect"
+                  className="w-full h-16 px-8 flex items-center justify-center text-sm font-semibold uppercase tracking-tight bg-[#1E4BB5] text-white rounded-full hover:bg-[#153a8f] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-2 shadow-lg shadow-blue-500/20"
+                  aria-label="Go to contact section"
+                >
                   Explore Our Work
-                </MagneticButton>
-              </Link>
+                </Link>
+              </motion.div>
 
-              {/* Updated "Watch Story" to be a working link to #vision */}
+              {/* Watch Story Button */}
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
