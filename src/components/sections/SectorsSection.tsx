@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { Sparkles, ArrowUpRight } from "lucide-react";
 import { MagneticButton, LogoArcIcon } from "@/components/ui";
 import { SECTORS } from "@/data/sectors";
+import Link from "next/link";
 
 export const SectorsSection: React.FC = () => {
   // Added explicit type for the ref
@@ -153,13 +154,14 @@ export const SectorsSection: React.FC = () => {
               <p className="text-white/70 text-sm mb-8 max-w-[200px] mx-auto">
                 Join us in making a difference across Assam.
               </p>
-
-              <MagneticButton
-                className="bg-white text-[#1E4BB5] text-xs hover:bg-gray-100"
-                variant="secondary"
-              >
-                Apply Now
-              </MagneticButton>
+              <Link href="#connect" aria-label="Go to contact section">
+                <MagneticButton
+                  className="bg-white text-[#1E4BB5] text-xs hover:bg-gray-100"
+                  variant="secondary"
+                >
+                  Apply Now
+                </MagneticButton>
+              </Link>
             </div>
           </motion.li>
         </ul>

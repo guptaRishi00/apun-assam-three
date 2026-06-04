@@ -7,8 +7,22 @@ import Image from "next/image";
 import Link from "next/link";
 
 const links = {
-  platform: ["Vision", "Impact", "Sectors", "Partners"],
-  socials: ["Instagram", "LinkedIn", "Facebook", "Twitter"],
+  platform: ["Vision", "Initiatives", "Connect"],
+  // Updated to include names and explicit URLs. Removed Twitter.
+  socials: [
+    {
+      name: "Instagram",
+      url: "https://www.instagram.com/apun.org.in?igsh=bTR6bDk3aWxoNm84",
+    },
+    {
+      name: "Facebook",
+      url: "https://www.facebook.com/share/1B55w4NPdv/?mibextid=wwXIfr",
+    },
+    {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/company/apun/?viewAsMember=true",
+    },
+  ],
 };
 
 const GOOGLE_SCRIPT_URL =
@@ -122,15 +136,16 @@ export const Footer: React.FC = () => {
                 Socials
               </h3>
               <ul className="space-y-3">
-                {links.socials.map((link) => (
-                  <li key={link}>
+                {/* Updated mapping to use the objects defined at the top */}
+                {links.socials.map((social) => (
+                  <li key={social.name}>
                     <a
-                      href="#"
+                      href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-sm font-semibold text-gray-700 hover:text-[#1E4BB5] transition-colors flex items-center gap-1 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5] rounded-sm w-max"
                     >
-                      {link}
+                      {social.name}
                       <ArrowUpRight
                         size={12}
                         className="opacity-0 group-hover:opacity-100 transition-opacity"

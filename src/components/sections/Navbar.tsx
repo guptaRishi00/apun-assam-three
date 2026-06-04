@@ -50,17 +50,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onMenuOpen }) => {
       </motion.div>
 
       <div className="flex items-center gap-3 md:gap-4">
-        <MagneticButton className="hidden md:flex text-xs px-6 py-3 font-medium">
-          Join Movement{" "}
-          <Sparkles size={14} className="ml-1" aria-hidden="true" />
-        </MagneticButton>
+        <Link href="#connect" aria-label="Go to contact section">
+          <MagneticButton className="hidden md:flex text-xs px-6 py-3 font-medium">
+            Let's Connect
+          </MagneticButton>
+        </Link>
 
         <motion.button
           onClick={onMenuOpen}
           whileHover={{ scale: 1.1, rotate: 90 }}
           whileTap={{ scale: 0.95 }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
-          className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-[#0A0A0F] to-[#1A1A24] text-white rounded-2xl flex items-center justify-center shadow-xl shadow-black/20 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+          className="w-12 h-12 md:w-14 md:h-14 bg-linear-to-br from-[#0A0A0F] to-[#1A1A24] text-white rounded-2xl flex items-center justify-center shadow-xl shadow-black/20 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
           aria-label="Open navigation menu"
           aria-haspopup="menu"
         >

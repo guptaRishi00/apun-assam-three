@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowDown, Play } from "lucide-react";
 import { LogoArcIcon, MagneticButton } from "@/components/ui";
+import Link from "next/link";
 
 export const HeroSection: React.FC = () => {
   return (
@@ -86,7 +87,7 @@ export const HeroSection: React.FC = () => {
           className="relative w-full h-[300px] md:h-[450px] lg:h-[550px] rounded-2xl md:rounded-3xl overflow-hidden mb-12 group"
         >
           <Image
-            src="/herosection.jpeg"
+            src="/herosection2.jpeg"
             alt="Community empowerment in Assam - APUN"
             fill
             priority
@@ -134,26 +135,41 @@ export const HeroSection: React.FC = () => {
               grassroots empowerment in Assam.
             </p>
 
-            <div className="flex flex-wrap gap-4">
-              <MagneticButton>Explore Our Work</MagneticButton>
-              <motion.button
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+              <Link
+                href="#connect"
+                aria-label="Go to contact section"
+                className="w-full sm:w-auto"
+              >
+                <MagneticButton className="w-full sm:w-auto h-16 px-8 flex items-center justify-center text-sm font-semibold uppercase tracking-tight">
+                  Explore Our Work
+                </MagneticButton>
+              </Link>
+
+              {/* Updated "Watch Story" to be a working link to #vision */}
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-3 px-6 py-4 rounded-full border-2 border-gray-200 hover:border-[#1E4BB5] transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-2"
-                aria-label="Watch our story video"
+                className="w-full sm:w-auto"
               >
-                <div className="w-10 h-10 rounded-full bg-[#1E4BB5] flex items-center justify-center">
-                  <Play
-                    size={16}
-                    className="text-white ml-0.5"
-                    fill="white"
-                    aria-hidden="true"
-                  />
-                </div>
-                <span className="font-semibold text-sm uppercase tracking-tight">
-                  Watch Story
-                </span>
-              </motion.button>
+                <Link
+                  href="#vision"
+                  className="w-full h-16 flex items-center justify-center gap-3 px-6 rounded-full border-2 border-gray-200 hover:border-[#1E4BB5] transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-2"
+                  aria-label="Scroll to vision section"
+                >
+                  <div className="w-10 h-10 rounded-full bg-[#1E4BB5] flex items-center justify-center shrink-0">
+                    <Play
+                      size={16}
+                      className="text-white ml-0.5"
+                      fill="white"
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <span className="font-semibold text-sm uppercase tracking-tight text-gray-900">
+                    Watch Story
+                  </span>
+                </Link>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -172,28 +188,6 @@ export const HeroSection: React.FC = () => {
         </div>
 
         {/* Scroll indicator */}
-        <motion.a
-          href="#vision"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5] rounded-lg p-2"
-          aria-label="Scroll to vision section"
-        >
-          <span className="text-[10px] font-mono uppercase tracking-widest text-gray-400">
-            Scroll
-          </span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-          >
-            <ArrowDown
-              size={20}
-              className="text-[#1E4BB5]"
-              aria-hidden="true"
-            />
-          </motion.div>
-        </motion.a>
       </div>
     </section>
   );

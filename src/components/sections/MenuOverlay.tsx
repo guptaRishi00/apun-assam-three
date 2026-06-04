@@ -12,9 +12,18 @@ const MENU_ITEMS = [
 ] as const;
 
 const SOCIALS = [
-  { label: "Instagram", href: "#" },
-  { label: "LinkedIn", href: "#" },
-  { label: "Twitter", href: "#" },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/apun.org.in?igsh=bTR6bDk3aWxoNm84",
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/apun/?viewAsMember=true",
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/share/1B55w4NPdv/?mibextid=wwXIfr",
+  },
 ] as const;
 
 export const MenuOverlay: React.FC<MenuOverlayProps> = ({

@@ -10,9 +10,23 @@ const contactInfo = [
     label: "Location",
     value: "Ronga Bora Chuk, Komar Gaon, Rajabhetta, Dibrugarh, Assam 786004",
     icon: MapPin,
+    // Opens in Google Maps (or the maps app on mobile)
+    href: "https://maps.google.com/?q=Ronga+Bora+Chuk,+Komar+Gaon,+Rajabhetta,+Dibrugarh,+Assam+786004",
   },
-  { label: "Email", value: "Info@apun.org.in", icon: Mail },
-  { label: "Phone", value: "+91 7896889701 / +91 8099476614", icon: Phone },
+  {
+    label: "Email",
+    value: "Info@apun.org.in",
+    icon: Mail,
+    // Opens default email client
+    href: "mailto:Info@apun.org.in",
+  },
+  {
+    label: "Phone",
+    value: "+91 7896889701 / +91 8099476614",
+    icon: Phone,
+    // Dials the primary phone number
+    href: "tel:+917896889701",
+  },
 ];
 
 const GOOGLE_SCRIPT_URL =
@@ -118,23 +132,35 @@ export const ContactSection: React.FC = () => {
                 initial={{ opacity: 0, x: -30 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ delay: 0.2 + i * 0.1 }}
-                className="group flex items-start sm:items-center gap-4 p-3 sm:p-4 rounded-2xl hover:bg-white/5 transition-colors cursor-pointer"
               >
-                <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-[#1E4BB5] to-[#3B6FE8] flex items-center justify-center mt-1 sm:mt-0">
-                  <item.icon
-                    size={20}
-                    aria-hidden="true"
-                    className="w-4 h-4 sm:w-5 sm:h-5"
-                  />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="text-[9px] sm:text-[10px] font-mono uppercase tracking-widest text-white/40 mb-1">
-                    {item.label}
-                  </p>
-                  <p className="font-semibold text-sm sm:text-base md:text-lg group-hover:text-[#06B6D4] transition-colors break-words">
-                    {item.value}
-                  </p>
-                </div>
+                {/* Wrapped the content in an anchor tag with the href */}
+                <a
+                  href={item.href}
+                  target={item.label === "Location" ? "_blank" : undefined}
+                  rel={
+                    item.label === "Location"
+                      ? "noopener noreferrer"
+                      : undefined
+                  }
+                  className="group flex items-start sm:items-center gap-4 p-3 sm:p-4 rounded-2xl hover:bg-white/5 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5]"
+                  aria-label={`Contact us via ${item.label}`}
+                >
+                  <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-[#1E4BB5] to-[#3B6FE8] flex items-center justify-center mt-1 sm:mt-0">
+                    <item.icon
+                      size={20}
+                      aria-hidden="true"
+                      className="w-4 h-4 sm:w-5 sm:h-5"
+                    />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[9px] sm:text-[10px] font-mono uppercase tracking-widest text-white/40 mb-1">
+                      {item.label}
+                    </p>
+                    <p className="font-semibold text-sm sm:text-base md:text-lg group-hover:text-[#06B6D4] transition-colors break-words">
+                      {item.value}
+                    </p>
+                  </div>
+                </a>
               </motion.li>
             ))}
           </ul>
