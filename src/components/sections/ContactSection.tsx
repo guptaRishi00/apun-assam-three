@@ -8,9 +8,10 @@ import { LogoArcGrey } from "../ui/LogoArcGrey";
 const contactInfo = [
   {
     label: "Location",
-    value: "Ronga Bora Chuk, Komar Gaon, Rajabhetta, Dibrugarh, Assam 786004",
+    value:
+      "Ronga Bora, Chetia Chuk, Komar Gaon, Rajabheta 135 F.S., Nagakhalia Gaon, Assam 786004",
     icon: MapPin,
-    href: "https://maps.google.com/?q=Ronga+Bora+Chuk,+Komar+Gaon,+Rajabhetta,+Dibrugarh,+Assam+786004",
+    href: "https://maps.app.goo.gl/jXMe8bgeV1xRDXCY7",
   },
   {
     label: "Email",

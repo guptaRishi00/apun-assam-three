@@ -116,9 +116,7 @@ export const MenuOverlay: React.FC<MenuOverlayProps> = ({
                   </a>
                 ))}
               </div>
-              <p className="text-sm text-white/30 font-mono">
-                Dibrugarh, Assam • India
-              </p>
+              <p className="text-sm text-white/30 font-mono">Assam • India</p>
             </div>
           </motion.div>
         </motion.div>

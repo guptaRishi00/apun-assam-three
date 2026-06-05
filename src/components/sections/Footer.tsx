@@ -227,7 +227,7 @@ export const Footer: React.FC = () => {
         <div className="pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex flex-col items-center md:items-start gap-2">
             <p className="text-xs text-gray-400 font-mono uppercase tracking-wider text-center md:text-left">
-              © {currentYear} APUN Association • Dibrugarh, Assam
+              © {currentYear} APUN • Assam
             </p>
             <p className="text-xs text-gray-500 font-medium">
               Made with{" "}

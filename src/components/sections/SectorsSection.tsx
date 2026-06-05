@@ -4,11 +4,49 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Sparkles } from "lucide-react";
 import { MagneticButton, LogoArcIcon } from "@/components/ui";
-import { SECTORS } from "@/data/sectors";
+
 import Link from "next/link";
+import Image from "next/image";
+
+export const SECTORS = [
+  {
+    id: "01",
+    title: "Community Development",
+    desc: "Inclusive welfare & grassroots engagement",
+    image: "/community.jpeg",
+    color: "#1E4BB5",
+  },
+  {
+    id: "02",
+    title: "Education & Youth",
+    desc: "Learning, leadership & youth empowerment",
+    image: "/youth.jpeg",
+    color: "#2563EB",
+  },
+  {
+    id: "03",
+    title: "Health & WASH",
+    desc: "Health awareness & sanitation support",
+    image: "/health.jpeg",
+    color: "#1D4ED8",
+  },
+  {
+    id: "04",
+    title: "Livelihoods & Gender Equity",
+    desc: "Women's empowerment & skills training",
+    image: "/livelihood.jpeg",
+    color: "#1E3A8A",
+  },
+  {
+    id: "05",
+    title: "Climate & Humanitarian Action",
+    desc: "Environment, resilience & emergency response",
+    image: "/climate.jpeg",
+    color: "#111827",
+  },
+];
 
 export const SectorsSection: React.FC = () => {
-  // Added explicit type for the ref
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -55,44 +93,38 @@ export const SectorsSection: React.FC = () => {
           </motion.p>
         </div>
 
-        {/* Cards Grid - Converted to a semantic unordered list */}
+        {/* Cards Grid */}
         <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 list-none p-0 m-0">
           {SECTORS.map((sector, i) => (
             <motion.li
               key={sector.id}
-              tabIndex={0} // Makes the card focusable via keyboard
+              tabIndex={0}
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.1 * i, duration: 0.6 }}
               whileHover={{ y: -8 }}
-              className="group relative bg-white p-8 md:p-10 rounded-[1.5rem] md:rounded-[2rem] flex flex-col justify-between min-h-[380px] md:min-h-[420px] overflow-hidden border border-gray-100 hover:border-[#1E4BB5]/30 transition-all duration-500 shadow-sm hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-4 focus-visible:ring-offset-[#FAFBFC]"
+              className="group relative bg-white rounded-[1.5rem] md:rounded-[2rem] flex flex-col overflow-hidden border border-gray-100 hover:border-[#1E4BB5]/30 transition-all duration-500 shadow-sm hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-4 focus-visible:ring-offset-[#FAFBFC]"
               aria-label={`Explore ${sector.title} sector`}
             >
-              {/* Top */}
-              <div className="flex justify-between items-start">
-                <span
-                  className="text-6xl md:text-7xl font-black text-gray-100 group-hover:text-[#1E4BB5]/10 transition-colors"
-                  aria-hidden="true"
-                >
-                  {sector.id}
-                </span>
-                <div className="p-4 md:p-5 rounded-2xl bg-gray-50 group-hover:bg-gradient-to-br group-hover:from-[#1E4BB5] group-hover:to-[#3B6FE8] transition-all duration-500">
-                  <sector.icon
-                    aria-hidden="true"
-                    size={24}
-                    className="text-gray-600 group-hover:text-white transition-colors"
-                  />
-                </div>
+              {/* Top Image Section (Edge-to-Edge) */}
+              <div className="relative w-full h-48 md:h-56 overflow-hidden bg-gray-50 shrink-0">
+                <Image
+                  src={sector.image || "/fallback-image.jpg"}
+                  alt={`${sector.title} visualization`}
+                  fill
+                  className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+                {/* Optional dark overlay gradient for better contrast if needed */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
 
-              {/* Bottom */}
-              <div>
-                <div className="flex items-center gap-3 mb-3">
-                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight group-hover:text-[#1E4BB5] transition-colors">
-                    {sector.title}
-                  </h3>
-                </div>
-                <p className="text-gray-500 text-sm md:text-base leading-relaxed">
+              {/* Bottom Content Section */}
+              <div className="p-6 md:p-8 flex flex-col flex-grow relative z-10 bg-white">
+                <h3 className="text-xl md:text-2xl font-bold tracking-tight group-hover:text-[#1E4BB5] transition-colors mb-3">
+                  {sector.title}
+                </h3>
+                <p className="text-gray-500 text-sm md:text-base leading-relaxed line-clamp-3">
                   {sector.desc}
                 </p>
               </div>
@@ -100,14 +132,14 @@ export const SectorsSection: React.FC = () => {
               {/* Hover decoration */}
               <div
                 aria-hidden="true"
-                className="absolute -bottom-16 -right-16 opacity-0 group-hover:opacity-[0.03] transition-opacity duration-700 pointer-events-none"
+                className="absolute -bottom-12 -right-12 opacity-0 group-hover:opacity-[0.03] transition-opacity duration-700 pointer-events-none z-0"
               >
                 <LogoArcIcon className="w-64 h-32 text-[#1E4BB5]" />
               </div>
             </motion.li>
           ))}
 
-          {/* CTA Card - Also treated as a list item */}
+          {/* CTA Card */}
           <motion.li
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -115,7 +147,7 @@ export const SectorsSection: React.FC = () => {
             whileHover={{ scale: 0.98 }}
             className="relative bg-gradient-to-br from-[#1E4BB5] via-[#2A5BC7] to-[#3B6FE8] rounded-[1.5rem] md:rounded-[2rem] p-8 md:p-10 flex flex-col justify-center items-center text-center text-white min-h-[380px] md:min-h-[420px] overflow-hidden group shadow-2xl shadow-blue-500/30"
           >
-            {/* Background glow & circles - Hidden from screen readers */}
+            {/* CTA Background Details */}
             <div
               aria-hidden="true"
               className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"
