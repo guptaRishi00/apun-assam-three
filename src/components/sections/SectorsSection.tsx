@@ -188,7 +188,7 @@ export const SectorsSection: React.FC = () => {
               <p className="text-white/70 text-sm mb-8 max-w-[200px] mx-auto">
                 Join us in making a difference across Assam.
               </p>
-              <Link href="http://localhost:3000/#connect" aria-label="Go to contact section">
+              <Link href="/#connect" aria-label="Go to contact section">
                 <MagneticButton
                   className="bg-white text-[#1E4BB5] text-xs hover:bg-gray-100 cursor-pointer"
                   variant="secondary"

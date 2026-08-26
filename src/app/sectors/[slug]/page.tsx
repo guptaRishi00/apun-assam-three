@@ -391,7 +391,7 @@ export default function SectorDetails() {
                         })}
                       </div>
 
-                      <Link href="http://localhost:3000/#connect" className="mt-10 inline-flex items-center justify-center px-8 py-4 bg-[#1E4BB5] text-white rounded-2xl font-semibold hover:bg-[#153a96] transition-all hover:shadow-xl hover:-translate-y-1 w-fit group">
+                      <Link href="/#connect" className="mt-10 inline-flex items-center justify-center px-8 py-4 bg-[#1E4BB5] text-white rounded-2xl font-semibold hover:bg-[#153a96] transition-all hover:shadow-xl hover:-translate-y-1 w-fit group">
                         Become a Partner <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                       </Link>
                     </div>
