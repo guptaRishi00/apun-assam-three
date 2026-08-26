@@ -8,47 +8,45 @@ import { MagneticButton, LogoArcIcon } from "@/components/ui";
 import Link from "next/link";
 import Image from "next/image";
 
-export const SECTORS = [
-  {
-    id: "01",
-    title: "Community Development",
-    desc: "Inclusive welfare & grassroots engagement",
-    image: "/community.jpeg",
-    color: "#1E4BB5",
-  },
-  {
-    id: "02",
-    title: "Education & Youth",
-    desc: "Learning, leadership & youth empowerment",
-    image: "/youth.jpeg",
-    color: "#2563EB",
-  },
-  {
-    id: "03",
-    title: "Health & WASH",
-    desc: "Health awareness & sanitation support",
-    image: "/health.jpeg",
-    color: "#1D4ED8",
-  },
-  {
-    id: "04",
-    title: "Livelihoods & Gender Equity",
-    desc: "Women's empowerment & skills training",
-    image: "/livelihood.jpeg",
-    color: "#1E3A8A",
-  },
-  {
-    id: "05",
-    title: "Climate & Humanitarian Action",
-    desc: "Environment, resilience & emergency response",
-    image: "/climate.jpeg",
-    color: "#111827",
-  },
-];
+import { useEffect, useState } from "react";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import { db } from "@/lib/firebase";
+import { Loader2 } from "lucide-react";
+
+interface SectorData {
+  id: string;
+  title: string;
+  shortDescription: string;
+  coverImage: string;
+  slug: string;
+}
 
 export const SectorsSection: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  
+  const [sectors, setSectors] = useState<SectorData[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSectors = async () => {
+      try {
+        const q = query(collection(db, "sectors"), orderBy("createdAt", "asc"));
+        const snapshot = await getDocs(q);
+        const data = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        })) as SectorData[];
+        setSectors(data);
+      } catch (error) {
+        console.error("Error fetching sectors:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchSectors();
+  }, []);
 
   return (
     <section
@@ -94,50 +92,59 @@ export const SectorsSection: React.FC = () => {
         </div>
 
         {/* Cards Grid */}
-        <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 list-none p-0 m-0">
-          {SECTORS.map((sector, i) => (
-            <motion.li
-              key={sector.id}
-              tabIndex={0}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.1 * i, duration: 0.6 }}
-              whileHover={{ y: -8 }}
-              className="group relative bg-white rounded-[1.5rem] md:rounded-[2rem] flex flex-col overflow-hidden border border-gray-100 hover:border-[#1E4BB5]/30 transition-all duration-500 shadow-sm hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-4 focus-visible:ring-offset-[#FAFBFC]"
-              aria-label={`Explore ${sector.title} sector`}
-            >
-              {/* Top Image Section (Edge-to-Edge) */}
-              <div className="relative w-full h-48 md:h-56 overflow-hidden bg-gray-50 shrink-0">
-                <Image
-                  src={sector.image || "/fallback-image.jpg"}
-                  alt={`${sector.title} visualization`}
-                  fill
-                  className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-                {/* Optional dark overlay gradient for better contrast if needed */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
-
-              {/* Bottom Content Section */}
-              <div className="p-6 md:p-8 flex flex-col flex-grow relative z-10 bg-white">
-                <h3 className="text-xl md:text-2xl font-bold tracking-tight group-hover:text-[#1E4BB5] transition-colors mb-3">
-                  {sector.title}
-                </h3>
-                <p className="text-gray-500 text-sm md:text-base leading-relaxed line-clamp-3">
-                  {sector.desc}
-                </p>
-              </div>
-
-              {/* Hover decoration */}
-              <div
-                aria-hidden="true"
-                className="absolute -bottom-12 -right-12 opacity-0 group-hover:opacity-[0.03] transition-opacity duration-700 pointer-events-none z-0"
+        {loading ? (
+          <div className="flex justify-center items-center h-64">
+             <Loader2 className="w-8 h-8 animate-spin text-[#1E4BB5]" />
+          </div>
+        ) : (
+          <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 list-none p-0 m-0">
+            {sectors.map((sector, i) => (
+              <motion.li
+                key={sector.id}
+                tabIndex={0}
+                initial={{ opacity: 0, y: 40 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.1 * i, duration: 0.6 }}
+                whileHover={{ y: -8 }}
+                className="group relative bg-white rounded-[1.5rem] md:rounded-[2rem] flex flex-col overflow-hidden border border-gray-100 hover:border-[#1E4BB5]/30 transition-all duration-500 shadow-sm hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4BB5] focus-visible:ring-offset-4 focus-visible:ring-offset-[#FAFBFC]"
+                aria-label={`Explore ${sector.title} sector`}
               >
-                <LogoArcIcon className="w-64 h-32 text-[#1E4BB5]" />
-              </div>
-            </motion.li>
-          ))}
+                <Link href={`/sectors/${sector.slug}`} className="flex flex-col h-full absolute inset-0 z-20">
+                  <span className="sr-only">View {sector.title}</span>
+                </Link>
+                
+                {/* Top Image Section (Edge-to-Edge) */}
+                <div className="relative w-full h-48 md:h-56 overflow-hidden bg-gray-50 shrink-0">
+                  <Image
+                    src={sector.coverImage || "/fallback-image.jpg"}
+                    alt={`${sector.title} visualization`}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                  {/* Optional dark overlay gradient for better contrast if needed */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+
+                {/* Bottom Content Section */}
+                <div className="p-6 md:p-8 flex flex-col flex-grow relative z-10 bg-white">
+                  <h3 className="text-xl md:text-2xl font-bold tracking-tight group-hover:text-[#1E4BB5] transition-colors mb-3">
+                    {sector.title}
+                  </h3>
+                  <p className="text-gray-500 text-sm md:text-base leading-relaxed line-clamp-3">
+                    {sector.shortDescription}
+                  </p>
+                </div>
+
+                {/* Hover decoration */}
+                <div
+                  aria-hidden="true"
+                  className="absolute -bottom-12 -right-12 opacity-0 group-hover:opacity-[0.03] transition-opacity duration-700 pointer-events-none z-0"
+                >
+                  <LogoArcIcon className="w-64 h-32 text-[#1E4BB5]" />
+                </div>
+              </motion.li>
+            ))}
 
           {/* CTA Card */}
           <motion.li
@@ -181,7 +188,7 @@ export const SectorsSection: React.FC = () => {
               <p className="text-white/70 text-sm mb-8 max-w-[200px] mx-auto">
                 Join us in making a difference across Assam.
               </p>
-              <Link href="#connect" aria-label="Go to contact section">
+              <Link href="http://localhost:3000/#connect" aria-label="Go to contact section">
                 <MagneticButton
                   className="bg-white text-[#1E4BB5] text-xs hover:bg-gray-100 cursor-pointer"
                   variant="secondary"
@@ -192,6 +199,7 @@ export const SectorsSection: React.FC = () => {
             </div>
           </motion.li>
         </ul>
+        )}
       </div>
     </section>
   );
